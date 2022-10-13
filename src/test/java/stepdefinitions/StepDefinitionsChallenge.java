@@ -1,13 +1,18 @@
 package stepdefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import models.AnswerData;
+import models.DataRequired;
+import models.LoginData;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import questions.Answer;
+import questions.AnswerCreation;
+import tasks.CreateUnit;
 import tasks.Login;
 import tasks.OpenUp;
 
@@ -21,11 +26,15 @@ public class StepDefinitionsChallenge {
         OnStage.theActorCalled("trainee").wasAbleTo(OpenUp.thePage());
     }
     @When("he login on the page")
-    public void heLoginOnThePage() {
-        OnStage.theActorInTheSpotlight().attemptsTo(Login.onThePage());
+    public void heLoginOnThePage(DataTable data) {
+        OnStage.theActorInTheSpotlight().attemptsTo(Login.onThePage(LoginData.setData(data).get(0)));
     }
-    @Then("he should see the {string} page")
-    public void heShouldSeeTheDashboardPage(String page) {
-        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(Answer.toThe(page)));
+    @When("he create a Business Unit")
+    public void heCreateABusinessUnit(DataTable dataBusinessUnit) {
+        OnStage.theActorInTheSpotlight().attemptsTo(CreateUnit.ofBusiness(DataRequired.setData(dataBusinessUnit).get(0)));
+    }
+    @Then("he should see the Business Unit created in the page")
+    public void heShouldSeeTheBusinessUnitCreatedInThePage(DataTable dataUnitCreated) {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(AnswerCreation.toThe(AnswerData.setData(dataUnitCreated).get(0))));
     }
 }
