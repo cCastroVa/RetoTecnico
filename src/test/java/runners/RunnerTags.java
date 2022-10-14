@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @RunWith(RunnerPersonalizado.class)
 @CucumberOptions(features = {"src/test/resources/features/demo.feature"},
-        tags = "@automation",
+        tags = "@practiceB",
         glue = "stepdefinitions",
         plugin = {"pretty","json:target/cucumber-reports/cucumber.json"},
         snippets= CucumberOptions.SnippetType.CAMELCASE)

@@ -8,11 +8,13 @@ import io.cucumber.java.en.When;
 import models.AnswerData;
 import models.DataRequired;
 import models.LoginData;
+import models.MeetingData;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import questions.AnswerCreation;
 import tasks.CreateUnit;
+import tasks.CreationMeeting;
 import tasks.Login;
 import tasks.OpenUp;
 
@@ -35,6 +37,22 @@ public class StepDefinitionsChallenge {
     }
     @Then("he should see the Business Unit created in the page")
     public void heShouldSeeTheBusinessUnitCreatedInThePage(DataTable dataUnitCreated) {
-        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(AnswerCreation.toThe(AnswerData.setData(dataUnitCreated).get(0))));
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(AnswerCreation.toThe(AnswerData
+                .setData(dataUnitCreated).get(0))));
+    }
+
+    @Given("he trainee logged on the page")
+    public void heTraineeLoggedOnThePage(DataTable data) {
+        OnStage.theActorCalled("trainee").wasAbleTo(OpenUp.thePage(), Login.onThePage(LoginData.setData(data).get(0)));
+    }
+    @When("he program a new meeting")
+    public void heProgramANewMeeting(DataTable meetingTable) {
+        OnStage.theActorInTheSpotlight().attemptsTo(CreationMeeting.ofUnit(MeetingData.setData(meetingTable).get(0)));
+    }
+    @When("he program the attendee")
+    public void heProgramTheAttendee(io.cucumber.datatable.DataTable dataTable) {
+    }
+    @Then("he should see the new meeting created in the page")
+    public void heShouldSeeTheNewMeetingCreatedInThePage(io.cucumber.datatable.DataTable dataTable) {
     }
 }

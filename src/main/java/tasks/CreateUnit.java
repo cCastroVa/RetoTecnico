@@ -6,7 +6,6 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.Hit;
 import org.openqa.selenium.Keys;
 import userinterfaces.CreateUnitPage;
 
@@ -26,9 +25,8 @@ public class CreateUnit implements Task {
                 Click.on(CreateUnitPage.NEW_UNIT_BUSINESS),
                 Enter.theValue(dataRequired.getName_unit()).into(CreateUnitPage.INPUT_NAME_UNITBUSINESS),
                 Click.on(CreateUnitPage.PARENT_UNIT),
-                Enter.theValue(dataRequired.getParents_unit()).into(CreateUnitPage.INPUT_PARENT_UNIT),
-                Hit.the(Keys.DOWN).into(CreateUnitPage.INPUT_PARENT_UNIT),
-                Hit.the(Keys.ENTER).into(CreateUnitPage.INPUT_PARENT_UNIT),
+                Enter.theValue(dataRequired.getParents_unit()).into(CreateUnitPage.INPUT_PARENT_UNIT).thenHit(Keys.DOWN)
+                        .thenHit(Keys.ENTER),
                 Click.on(CreateUnitPage.BUTTON_SAVE));
     }
 }
