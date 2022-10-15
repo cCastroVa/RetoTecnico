@@ -5,18 +5,12 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import models.AnswerData;
-import models.DataRequired;
-import models.LoginData;
-import models.MeetingData;
+import models.*;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import questions.AnswerCreation;
-import tasks.CreateUnit;
-import tasks.CreationMeeting;
-import tasks.Login;
-import tasks.OpenUp;
+import tasks.*;
 
 public class StepDefinitionsChallenge {
     @Before
@@ -50,7 +44,8 @@ public class StepDefinitionsChallenge {
         OnStage.theActorInTheSpotlight().attemptsTo(CreationMeeting.ofUnit(MeetingData.setData(meetingTable).get(0)));
     }
     @When("he program the attendee")
-    public void heProgramTheAttendee(io.cucumber.datatable.DataTable dataTable) {
+    public void heProgramTheAttendee(DataTable listAttendee) {
+        OnStage.theActorInTheSpotlight().attemptsTo(Attendee.List(AttendeeListData.setData(listAttendee).get(0)));
     }
     @Then("he should see the new meeting created in the page")
     public void heShouldSeeTheNewMeetingCreatedInThePage(io.cucumber.datatable.DataTable dataTable) {

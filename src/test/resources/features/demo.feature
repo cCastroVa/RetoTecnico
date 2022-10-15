@@ -25,8 +25,8 @@ Feature: Practical exercise
       |meeting_name|meeting_type|start_date|start_hour|location|organized_by|meeting_number|end_date  |end_hour|name_unit|reporter    |
       |introduction|General     |10/20/2022|10:00     |On Site |James Brooks|01            |10/20/2022|12:30   |Trainee  |Olivia Reed |
     And he program the attendee
-      |attendee1_name|attendee_type|attendee2_name|attendee2_type|attendee3_name|attendee2_type|
-      |Olivia Reed   |Attendee     |Laura Jackson |Guest         |Allison Bell  |Guest         |
+      |attendee_name|attendee_type|attendee2_name|attendee2_type|attendee3_name|attendee3_type |
+      |Olivia Reed  |2            |Alexis Lopez  |1             |Dylan Clark   |1              |
     Then he should see the new meeting created in the page
       |meeting_name|
       |introduction|
