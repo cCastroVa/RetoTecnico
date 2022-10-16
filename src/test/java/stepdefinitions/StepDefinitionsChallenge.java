@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import questions.AnswerCreation;
+import questions.MeetingCreationAnswer;
 import tasks.*;
 
 public class StepDefinitionsChallenge {
@@ -35,9 +36,9 @@ public class StepDefinitionsChallenge {
                 .setData(dataUnitCreated).get(0))));
     }
 
-    @Given("he trainee logged on the page")
-    public void heTraineeLoggedOnThePage(DataTable data) {
-        OnStage.theActorCalled("trainee").wasAbleTo(OpenUp.thePage(), Login.onThePage(LoginData.setData(data).get(0)));
+    @Given("he trainee created a new business unit")
+    public void heTraineeCreatedANewBusinessUnit() {
+        OnStage.theActorCalled("trainee").wasAbleTo(OpenUp.thePage());
     }
     @When("he program a new meeting")
     public void heProgramANewMeeting(DataTable meetingTable) {
@@ -48,6 +49,8 @@ public class StepDefinitionsChallenge {
         OnStage.theActorInTheSpotlight().attemptsTo(Attendee.List(AttendeeListData.setData(listAttendee).get(0)));
     }
     @Then("he should see the new meeting created in the page")
-    public void heShouldSeeTheNewMeetingCreatedInThePage(io.cucumber.datatable.DataTable dataTable) {
+    public void heShouldSeeTheNewMeetingCreatedInThePage(DataTable table) {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(MeetingCreationAnswer.toThe(CreatedMeetingAnswerData
+                .setData(table).get(0))));
     }
 }

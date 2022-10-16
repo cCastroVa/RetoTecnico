@@ -18,9 +18,7 @@ Feature: Practical exercise
 
   @practiceB
   Scenario: Create a new meeting
-    Given he trainee logged on the page
-      | user | password |
-      |admin | serenity |
+    Given he trainee created a new business unit
     When he program a new meeting
       |meeting_name|meeting_type|start_date|start_hour|location|organized_by|meeting_number|end_date  |end_hour|name_unit|reporter    |
       |introduction|General     |10/20/2022|10:00     |On Site |James Brooks|01            |10/20/2022|12:30   |Trainee  |Olivia Reed |

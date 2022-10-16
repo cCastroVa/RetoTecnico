@@ -20,7 +20,6 @@ public class AnswerCreation implements Question<Boolean> {
     public Boolean answeredBy(Actor actor) {
         boolean result;
         String unitCreated = createUnitPage.getUnitNameCreated(answerData.getName_unit()).getText();
-        System.out.println(unitCreated);
         if (answerData.getName_unit().equals(unitCreated)){
             result = true;
         } else {
