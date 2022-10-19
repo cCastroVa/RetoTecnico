@@ -28,3 +28,13 @@ Feature: Practical exercise
     Then he should see the new meeting created in the page
       |meeting_name|
       |introduction|
+
+  @scenarioOne
+  Scenario: Create user
+    Given he trainee is on the home page
+    When he create a new user
+      |user_name|display_name|email            |roles     |mobile_phone_number|password|confirm_password|
+      |carlos   |carlitos    |carlos@correo.com|Developers|123456789          |serenity|serenity        |
+    Then he should see the user created on the page
+      |user_name|
+      |carlos   |

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class DataRequired {
+public class UnitData {
     private String name_unit;
     private String parents_unit;
     public String getName_unit() {
@@ -22,11 +22,11 @@ public class DataRequired {
         this.parents_unit = parents_unit;
     }
 
-    public static List<DataRequired> setData(DataTable dataTable){
-        List<DataRequired> dates= new ArrayList<>();
+    public static List<UnitData> setData(DataTable dataTable){
+        List<UnitData> dates= new ArrayList<>();
         List<Map<String,String>> mapIfo = dataTable.asMaps();
         for (Map<String, String> map: mapIfo){
-            dates.add(new ObjectMapper().convertValue(map,DataRequired.class));
+            dates.add(new ObjectMapper().convertValue(map, UnitData.class));
         }
         return dates;
     }

@@ -1,6 +1,6 @@
 package tasks;
 
-import models.DataRequired;
+import models.UnitData;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
@@ -10,12 +10,12 @@ import org.openqa.selenium.Keys;
 import userinterfaces.CreateUnitPage;
 
 public class CreateUnit implements Task {
-    private DataRequired dataRequired;
-    public CreateUnit(DataRequired dataRequired) {
-        this.dataRequired = dataRequired;
+    private UnitData unitData;
+    public CreateUnit(UnitData unitData) {
+        this.unitData = unitData;
     }
-    public static CreateUnit ofBusiness(DataRequired dataRequired) {
-        return Tasks.instrumented(CreateUnit.class, dataRequired);
+    public static CreateUnit ofBusiness(UnitData unitData) {
+        return Tasks.instrumented(CreateUnit.class, unitData);
     }
 
     @Override
@@ -23,9 +23,9 @@ public class CreateUnit implements Task {
         actor.attemptsTo(Click.on(CreateUnitPage.ORGANIZATION),
                 Click.on(CreateUnitPage.UNIT_BUSINESS),
                 Click.on(CreateUnitPage.NEW_UNIT_BUSINESS),
-                Enter.theValue(dataRequired.getName_unit()).into(CreateUnitPage.INPUT_NAME_UNITBUSINESS),
+                Enter.theValue(unitData.getName_unit()).into(CreateUnitPage.INPUT_NAME_UNITBUSINESS),
                 Click.on(CreateUnitPage.PARENT_UNIT),
-                Enter.theValue(dataRequired.getParents_unit()).into(CreateUnitPage.INPUT_PARENT_UNIT).thenHit(Keys.DOWN)
+                Enter.theValue(unitData.getParents_unit()).into(CreateUnitPage.INPUT_PARENT_UNIT).thenHit(Keys.DOWN)
                         .thenHit(Keys.ENTER),
                 Click.on(CreateUnitPage.BUTTON_SAVE));
     }

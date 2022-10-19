@@ -11,6 +11,7 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import questions.AnswerCreation;
 import questions.MeetingCreationAnswer;
+import questions.UserCreationAnswer;
 import tasks.*;
 
 public class StepDefinitionsChallenge {
@@ -28,7 +29,7 @@ public class StepDefinitionsChallenge {
     }
     @When("he create a Business Unit")
     public void heCreateABusinessUnit(DataTable dataBusinessUnit) {
-        OnStage.theActorInTheSpotlight().attemptsTo(CreateUnit.ofBusiness(DataRequired.setData(dataBusinessUnit).get(0)));
+        OnStage.theActorInTheSpotlight().attemptsTo(CreateUnit.ofBusiness(UnitData.setData(dataBusinessUnit).get(0)));
     }
     @Then("he should see the Business Unit created in the page")
     public void heShouldSeeTheBusinessUnitCreatedInThePage(DataTable dataUnitCreated) {
@@ -53,4 +54,19 @@ public class StepDefinitionsChallenge {
         OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(MeetingCreationAnswer.toThe(CreatedMeetingAnswerData
                 .setData(table).get(0))));
     }
+
+    @Given("he trainee is on the home page")
+    public void heTraineeIsOnTheHomePage() {
+        OnStage.theActorCalled("trainee").wasAbleTo(OpenUp.thePage());
+    }
+    @When("he create a new user")
+    public void heCreateANewUser(DataTable tableUser) {
+        OnStage.theActorInTheSpotlight().attemptsTo(CreateThe.newUser(NewUserData.setData(tableUser).get(0)));
+    }
+    @Then("he should see the user created on the page")
+    public void heShouldSeeTheUserCreatedOnThePage(DataTable tableResponse) {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(UserCreationAnswer.toThe(UserCreationData
+                .setData(tableResponse).get(0))));
+    }
+
 }
