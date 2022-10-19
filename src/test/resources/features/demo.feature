@@ -3,7 +3,6 @@
 Feature: Practical exercise
   As an operational trainee, I want complete the technical challenge
 
-  @practiceA
   Scenario: Create a new business unit
     Given the trainee is on the main page
     When he login on the page
@@ -16,7 +15,6 @@ Feature: Practical exercise
       | name_unit |
       | Trainee |
 
-  @practiceB
   Scenario: Create a new meeting
     Given the trainee created a new business unit
     When he program a new meeting
@@ -29,7 +27,6 @@ Feature: Practical exercise
       |meeting_name|
       |introduction|
 
-  @scenarioOne
   Scenario: Create user
     Given the trainee is on the home page
     When he create a new user
@@ -38,13 +35,3 @@ Feature: Practical exercise
     Then he should see the user created on the page
       |user_name|
       |carlos   |
-
-  # IMPORTANTE: correr este tag, solo, Y despues de haber ejecutado la automatizacion completa (creado el usuario nuevo)
-
-  @scenarioTwo
-  Scenario: Login
-    Given the user is on the login page
-    When he login on the main page
-      | user   | password |
-      | carlos | serenity |
-    Then he should see the "Dashboard" page

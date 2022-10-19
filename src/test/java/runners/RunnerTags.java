@@ -11,13 +11,14 @@ import java.io.IOException;
 
 @RunWith(RunnerPersonalizado.class)
 @CucumberOptions(features = {"src/test/resources/features/demo.feature"},
-        tags = "@scenarioTwo",
+        tags = "@automation",
         glue = "stepdefinitions",
         plugin = {"pretty","json:target/cucumber-reports/cucumber.json"},
         snippets= CucumberOptions.SnippetType.CAMELCASE)
 
 public class RunnerTags {
-    private RunnerTags() {}
+    private RunnerTags() {
+    }
     @BeforeSuite
     public static void test() throws InvalidFormatException, IOException
     {

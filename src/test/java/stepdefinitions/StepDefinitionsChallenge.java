@@ -70,18 +70,4 @@ public class StepDefinitionsChallenge {
                 .setData(tableResponse).get(0))));
     }
 
-
-    @Given("the user is on the login page")
-    public void theUserIsOnTheLoginPage() {
-        OnStage.theActorCalled("user").wasAbleTo(OpenUp.thePage());
-    }
-    @When("he login on the main page")
-    public void heLoginOnTheMainPage(DataTable dataNewUser) {
-        OnStage.theActorInTheSpotlight().attemptsTo(LoginNewUser.onThePage(LoginNewUserData.setData(dataNewUser).get(0)));
-    }
-    @Then("he should see the {string} page")
-    public void heShouldSeeTheDashboardPage(String response) {
-        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(Answer.toThe(response)));
-    }
-
 }
