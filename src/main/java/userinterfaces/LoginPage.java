@@ -11,4 +11,6 @@ public class LoginPage extends PageObject {
             .located(By.name("Password"));
     public static final Target BUTTON_LOGIN = Target.the("Click on the button for confirm to login")
             .located(By.xpath("//button[@type='submit']"));
+    public static final Target NAME_PAGE = Target.the("Extract the page name")
+            .located(By.xpath("//h1[contains(text(),'Dashboard')]"));
 }

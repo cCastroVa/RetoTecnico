@@ -9,6 +9,7 @@ import models.*;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import questions.Answer;
 import questions.AnswerCreation;
 import questions.MeetingCreationAnswer;
 import questions.UserCreationAnswer;
@@ -19,8 +20,8 @@ public class StepDefinitionsChallenge {
     public void setStage(){
         OnStage.setTheStage(new OnlineCast());
     }
-    @Given("he trainee is on the main page")
-    public void heTraineeIsOnTheMainPage() {
+    @Given("the trainee is on the main page")
+    public void theTraineeIsOnTheMainPage() {
         OnStage.theActorCalled("trainee").wasAbleTo(OpenUp.thePage());
     }
     @When("he login on the page")
@@ -37,8 +38,8 @@ public class StepDefinitionsChallenge {
                 .setData(dataUnitCreated).get(0))));
     }
 
-    @Given("he trainee created a new business unit")
-    public void heTraineeCreatedANewBusinessUnit() {
+    @Given("the trainee created a new business unit")
+    public void theTraineeCreatedANewBusinessUnit() {
         OnStage.theActorCalled("trainee").wasAbleTo(OpenUp.thePage());
     }
     @When("he program a new meeting")
@@ -55,8 +56,8 @@ public class StepDefinitionsChallenge {
                 .setData(table).get(0))));
     }
 
-    @Given("he trainee is on the home page")
-    public void heTraineeIsOnTheHomePage() {
+    @Given("the trainee is on the home page")
+    public void theTraineeIsOnTheHomePage() {
         OnStage.theActorCalled("trainee").wasAbleTo(OpenUp.thePage());
     }
     @When("he create a new user")
@@ -67,6 +68,20 @@ public class StepDefinitionsChallenge {
     public void heShouldSeeTheUserCreatedOnThePage(DataTable tableResponse) {
         OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(UserCreationAnswer.toThe(UserCreationData
                 .setData(tableResponse).get(0))));
+    }
+
+
+    @Given("the user is on the login page")
+    public void theUserIsOnTheLoginPage() {
+        OnStage.theActorCalled("user").wasAbleTo(OpenUp.thePage());
+    }
+    @When("he login on the main page")
+    public void heLoginOnTheMainPage(DataTable dataNewUser) {
+        OnStage.theActorInTheSpotlight().attemptsTo(LoginNewUser.onThePage(LoginNewUserData.setData(dataNewUser).get(0)));
+    }
+    @Then("he should see the {string} page")
+    public void heShouldSeeTheDashboardPage(String response) {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(Answer.toThe(response)));
     }
 
 }
